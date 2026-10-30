@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quanticdata-whois-api"
+version = "0.1.0"
+description = "WHOIS API and DNS lookup API for Python and the command line: registrar, creation and expiry dates, status codes and nameservers of a list of domains, plus their A, AAAA, MX, TXT, NS and other DNS records, as JSON or CSV. Free and open source; one parsed format over RDAP and WHOIS, sign in with your QuanticData account."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
+authors = [{ name = "QuanticData", email = "hello@quanticdata.io" }]
+keywords = ["whois-api", "whois", "whois-lookup", "rdap", "domain-lookup", "domain-whois", "domain-expiration", "dns-lookup", "dns-lookup-api", "dns-api", "dns-records", "mx-records"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+  "Typing :: Typed",
+]
+dependencies = []
+
+[project.optional-dependencies]
+pandas = ["pandas>=1.3"]
+
+[project.scripts]
+whois-api = "quanticdata_whois_api.__main__:run"
+
+[project.urls]
+Homepage = "https://quanticdata.io/collectors/whois-api/?utm_source=github&utm_medium=pypi&utm_campaign=whois-api"
+Documentation = "https://quanticdata.io/docs/"
+Source = "https://github.com/quantumproxies/whois-api"
+Issues = "https://github.com/quantumproxies/whois-api/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"quanticdata_whois_api" = ["spec.json", "py.typed"]

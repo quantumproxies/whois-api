@@ -1,0 +1,46 @@
+{
+ "run_id": "cmvkshq630u8b41o5lz9y27m6",
+ "slug": "dns_records",
+ "version": "1.1.0",
+ "status": "done",
+ "input": {
+  "domain": "quanticdata.io",
+  "max_results": 3
+ },
+ "count": 3,
+ "partial": false,
+ "finished_at": "2026-10-23T09:50:42.448Z",
+ "results": [
+  {
+   "ttl": 300,
+   "rank": 1,
+   "type": "A",
+   "value": "188.114.96.3",
+   "domain": "quanticdata.io",
+   "target": null,
+   "priority": null,
+   "dnssec_validated": false
+  },
+  {
+   "ttl": 300,
+   "rank": 2,
+   "type": "A",
+   "value": "188.114.97.3",
+   "domain": "quanticdata.io",
+   "target": null,
+   "priority": null,
+   "dnssec_validated": false
+  },
+  {
+   "ttl": 300,
+   "rank": 3,
+   "type": "AAAA",
+   "value": "2a06:98c1:3121::3",
+   "domain": "quanticdata.io",
+   "target": null,
+   "priority": null,
+   "dnssec_validated": false
+  }
+ ],
+ "_note": "Real run of 2026-10-23 on our own domain with the default record types, capped at three records. All three rows kept as delivered."
+}

@@ -1,0 +1,111 @@
+{
+ "cli": "whois-api",
+ "name": "WHOIS API",
+ "version": "0.1.0",
+ "description": "WHOIS API and DNS lookup API for Python and the command line: registrar, creation and expiry dates, status codes and nameservers of a list of domains, plus their A, AAAA, MX, TXT, NS and other DNS records, as JSON or CSV. Free and open source; one parsed format over RDAP and WHOIS, sign in with your QuanticData account.",
+ "links": {
+  "repo": "https://github.com/quantumproxies/whois-api",
+  "page": "https://quanticdata.io/collectors/whois-api/?utm_source=github&utm_medium=cli&utm_campaign=whois-api",
+  "billing": "https://app.quanticdata.io/billing?utm_source=github&utm_medium=cli&utm_campaign=whois-api",
+  "pricing": "https://quanticdata.io/pricing/?utm_source=github&utm_medium=cli&utm_campaign=whois-api"
+ },
+ "commands": [
+  {
+   "name": "whois",
+   "collector": "whois_domain",
+   "method": "whois",
+   "help": "WHOIS registration data for one or more domains",
+   "description": "Registration data of each domain from its registry: registrar and its IANA id, creation, expiry and last-change dates, EPP status codes, nameservers and DNSSEC. RDAP is used where the TLD offers it, the registry's WHOIS server otherwise.",
+   "positional": "domains",
+   "positional_is_list": true,
+   "positional_optional": false,
+   "columns": [
+    "domain",
+    "registrar",
+    "created",
+    "expires",
+    "updated",
+    "dnssec"
+   ],
+   "sample": "whois_domain",
+   "inputs": [
+    {
+     "name": "domains",
+     "type": "string[]",
+     "required": true,
+     "description": "Bare domains or URLs, e.g. quanticdata.io.",
+     "arg": "domains"
+    },
+    {
+     "name": "max_results",
+     "type": "integer",
+     "required": false,
+     "description": "How many domains to deliver at most (1–25). Set it to the number of domains you send when that is more than 10. You pay only for delivered domains.",
+     "min": 1,
+     "max": 25,
+     "default": 10,
+     "arg": "max_results"
+    }
+   ]
+  },
+  {
+   "name": "dns",
+   "collector": "dns_records",
+   "method": "dns",
+   "help": "DNS records of a domain (A, AAAA, MX, TXT, NS and more)",
+   "description": "DNS records of a domain, resolved over DNS over HTTPS, one row per record: type, TTL, data, MX and SRV priority and the host the record points to.",
+   "positional": "domain",
+   "positional_is_list": false,
+   "positional_optional": false,
+   "columns": [
+    "type",
+    "ttl",
+    "priority",
+    "target",
+    "value"
+   ],
+   "sample": "dns_records",
+   "inputs": [
+    {
+     "name": "domain",
+     "type": "string",
+     "required": true,
+     "description": "Domain to resolve, e.g. quanticdata.io.",
+     "arg": "domain"
+    },
+    {
+     "name": "types",
+     "type": "string[]",
+     "required": false,
+     "description": "Record types to look up (default A, AAAA, MX, TXT, NS).",
+     "enum": [
+      "A",
+      "AAAA",
+      "MX",
+      "TXT",
+      "NS",
+      "CNAME",
+      "SOA",
+      "CAA",
+      "SRV",
+      "PTR",
+      "DS",
+      "DNSKEY",
+      "HTTPS"
+     ],
+     "arg": "types"
+    },
+    {
+     "name": "max_results",
+     "type": "integer",
+     "required": false,
+     "description": "How many records to deliver at most (1–100). You pay only for delivered records.",
+     "min": 1,
+     "max": 100,
+     "default": 50,
+     "arg": "max_results"
+    }
+   ]
+  }
+ ]
+}
